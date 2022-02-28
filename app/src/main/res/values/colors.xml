@@ -7,4 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="cblack_transp">#9E000000</color>
+    <color name="cwhite_opacite">#95EAEAEA</color>
+    <color name="cbrown_clair">#94D28B48</color>
+    <color name="cbrown_fonce">#FF6C4826</color>
+    <color name="cBackgroundColor">#BA51504D</color>
 </resources>

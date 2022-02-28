@@ -1,8 +1,10 @@
 package fr.lajotsarthou.cavalier;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 
@@ -48,7 +50,6 @@ public class CavalierDbOpenHelper extends SQLiteOpenHelper {
     public static final String COLONNE_NUMSIRE = "numeroSire";
     public static final int COLONNE_NUMSIRE_ID = 7;
     public static final String COLONNE_PROPRIETAIRE = "proprietaire";
-    public static final int COLONNE_PROPRIETAIRE_ID = 8;
 
     //table 3 - enregistrement des engagements / résultats des compétitions
     private static final String TABLE_ENGAGEMENT = "table_engagement";
@@ -73,6 +74,14 @@ public class CavalierDbOpenHelper extends SQLiteOpenHelper {
     public static final String FK_EQUIDE_ID = "fk_equide_id";
     public static final String FK_CAVALIER_NUMLICENCE = "fk_cavalier_numlicence";
 
+    //table 4 - utilisateur
+    private static final String TABLE_USER = "table_user";
+    public static final String COLONNE_IDUSER = "idUser";
+    public static final int COLONNE_IDUSER_ID = 0;
+    public static final String COLONNE_USERNAME = "numUsername";
+    public static final int COLONNE_USERNAME_ID = 1;
+    public static final String COLONNE_PASSWORD = "paswword";
+    public static final int COLONNE_PASSWORD_ID = 2;
 
 
     private static final String REQUETE_CREATION_DB_TABLECAV = "create table " + TABLE_CAVALIER + " ( "
@@ -136,5 +145,32 @@ public class CavalierDbOpenHelper extends SQLiteOpenHelper {
         db.execSQL("drop table " + TABLE_EQUIDE + ";");
         db.execSQL(" drop table " + TABLE_ENGAGEMENT + ";");
         onCreate(db);
+    }
+
+    public void insertValuesCavalier(EditText nom, EditText prenom, EditText age, EditText sexe, EditText niveau, EditText numLicence){
+        ContentValues valeur = new ContentValues();
+
+        valeur.put(CavalierDbOpenHelper.COLONNE_NOM, nom.getText().toString());
+        valeur.put(CavalierDbOpenHelper.COLONNE_PRENOM, prenom.getText().toString());
+        valeur.put(CavalierDbOpenHelper.COLONNE_AGE, age.getText().toString());
+        valeur.put(CavalierDbOpenHelper.COLONNE_SEXE, sexe.getText().toString());
+        valeur.put(CavalierDbOpenHelper.COLONNE_NIVEAU, niveau.getText().toString());
+        valeur.put(CavalierDbOpenHelper.COLONNE_NUMLICENCE, numLicence.getText().toString());
+
+        getWritableDatabase().insert(CavalierDbOpenHelper.TABLE_CAVALIER, null, valeur);
+    }
+
+    public void insertValueEquide(EditText nomComplet, EditText nomEcurie, EditText age, EditText sexe, EditText race, EditText robe, EditText propriétaire){
+        ContentValues valeur = new ContentValues();
+
+        valeur.put(CavalierDbOpenHelper.COLONNE_NOMCOMPLET, nomComplet.getText().toString());
+        valeur.put(CavalierDbOpenHelper.COLONNE_NOMECURIE, nomEcurie.getText().toString());
+        valeur.put(CavalierDbOpenHelper.COLONNE_AGEEQ, age.getText().toString());
+        valeur.put(CavalierDbOpenHelper.COLONNE_SEXEEQ, sexe.getText().toString());
+        valeur.put(CavalierDbOpenHelper.COLONNE_RACE, race.getText().toString());
+        valeur.put(CavalierDbOpenHelper.COLONNE_ROBE, robe.getText().toString());
+        valeur.put(CavalierDbOpenHelper.COLONNE_PROPRIETAIRE, propriétaire.getText().toString());
+
+        getWritableDatabase().insert(CavalierDbOpenHelper.TABLE_EQUIDE, null, valeur);
     }
 }
