@@ -1,10 +1,15 @@
 package fr.lajotsarthou.cavalier;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -53,6 +58,7 @@ public class MenuFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -60,5 +66,43 @@ public class MenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_menu, container, false);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.menuhamburger, menu);
+        super.onCreateOptionsMenu(menu,inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.mProfile:
+                Intent navProfile = new Intent(MenuFragment.this.getActivity(), ProfilActivity.class);
+                startActivity(navProfile);
+                return true;
+
+            case R.id.mRechercherClub:
+                Intent navRechC = new Intent(MenuFragment.this.getActivity(), ClubActivity.class);
+                startActivity(navRechC);
+                return true;
+
+            case R.id.mRechercherEquide:
+                Intent navRechEq = new Intent(MenuFragment.this.getActivity(), EquideActivity.class);
+                startActivity(navRechEq);
+                return true;
+
+            case R.id.mEngagementsRes:
+                Intent navEngag = new Intent(MenuFragment.this.getActivity(), EngagementActivity.class);
+                startActivity(navEngag);
+                return true;
+
+            case R.id.mAccueil:
+                Intent navAcc = new Intent(MenuFragment.this.getActivity(), AccueilActivity.class);
+                startActivity(navAcc);
+                return true;
+        }
+        return false;
     }
 }

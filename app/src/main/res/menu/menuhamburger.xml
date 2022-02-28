@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/menu_cavalier">
+    <item
+        android:id="@+id/mProfile"
+        style="@style/menu_cavalier"
+        android:icon="@drawable/profile_image"
+        android:title="Ma page cavalier"></item>
+
+    <item
+        android:id="@+id/mRechercherClub"
+        style="@style/menu_cavalier"
+        android:icon="@drawable/centreeq"
+        android:title="Rechercher un club"></item>
+
+    <item
+        android:id="@+id/mRechercherEquide"
+        style="@style/menu_cavalier"
+        android:icon="@drawable/equide"
+        android:title="Rechercher un équidé"></item>
+    <item
+        android:id="@+id/mEngagementsRes"
+        style="@style/menu_cavalier"
+        android:icon="@drawable/flotvict"
+        android:title="Mes engagements et résultats"></item>
+    <item
+        android:id="@+id/mAccueil"
+        style="@style/menu_cavalier"
+        android:icon="@android:drawable/ic_menu_revert"
+        android:title="Accueil"></item>
+
+</menu>

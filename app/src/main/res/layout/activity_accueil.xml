@@ -1,9 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/Theme.Cavalier"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/lesbackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cBackgroundColor"
     android:orientation="vertical">
+
+    <RelativeLayout
+        style="@style/Theme.Cavalier"
+        android:layout_width="match_parent"
+        android:layout_height="234dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            style="@style/lesbackground"
+            android:layout_width="94dp"
+            android:layout_height="80dp"
+            android:layout_alignParentLeft="true"
+            android:background="#00FFFFFF"
+            android:minHeight="100dp"
+            android:theme="?attr/actionBarTheme"
+            app:navigationIcon="@android:drawable/ic_menu_sort_by_size" />
+
+        <fragment
+            android:id="@+id/fragment2"
+            android:name="fr.lajotsarthou.cavalier.MenuFragment"
+            android:layout_width="166dp"
+            android:layout_height="match_parent"
+            android:layout_alignTop="@id/toolbar" />
+
+        <ImageView
+            android:id="@+id/logo_cavalier"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_weight="1"
+            android:paddingRight="25dp"
+            app:srcCompat="@drawable/logo_cavalier_recadrer" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="140dp" />
+
+        <Button
+            android:id="@+id/bRechercheClub"
+            style="@style/boutton_cavalier"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:text="@string/rechercher_un_club_questre" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="34dp" />
+
+        <Button
+            android:id="@+id/bRechercheEquide"
+            style="@style/boutton_cavalier"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:text="@string/rechercher_un_quid" />
+    </LinearLayout>
 
 </LinearLayout>
