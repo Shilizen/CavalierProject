@@ -6,4 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".ProfilActivity">
 
+    <fragment
+        android:id="@+id/fragment3"
+        android:name="fr.lajotsarthou.cavalier.MenuFragment"
+        android:layout_width="296dp"
+        android:layout_height="700dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

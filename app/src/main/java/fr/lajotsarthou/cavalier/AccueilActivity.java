@@ -14,6 +14,9 @@ public class AccueilActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+       // toolbar.setNavigationIcon(R.drawable.hamburger_menu);
         toolbar.getNavigationIcon();
+        //toolbar.inflateMenu(R.menu.menuhamburger);
+
     }
 }

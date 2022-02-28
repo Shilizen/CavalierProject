@@ -14,20 +14,19 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             style="@style/lesbackground"
-            android:layout_width="94dp"
-            android:layout_height="80dp"
+            android:layout_width="59dp"
+            android:layout_height="65dp"
             android:layout_alignParentLeft="true"
-            android:background="#00FFFFFF"
             android:minHeight="100dp"
-            android:theme="?attr/actionBarTheme"
-            app:navigationIcon="@android:drawable/ic_menu_sort_by_size" />
+            android:theme="@style/menu_cavalier" />
 
         <fragment
             android:id="@+id/fragment2"
             android:name="fr.lajotsarthou.cavalier.MenuFragment"
-            android:layout_width="166dp"
+            android:layout_width="160dp"
             android:layout_height="match_parent"
-            android:layout_alignTop="@id/toolbar" />
+            android:layout_alignTop="@id/toolbar"
+            android:layout_marginTop="0dp" />
 
         <ImageView
             android:id="@+id/logo_cavalier"
