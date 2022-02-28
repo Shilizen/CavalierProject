@@ -79,7 +79,7 @@ public class MenuFragment extends Fragment {
         int id = item.getItemId();
         switch (id) {
             case R.id.mProfile:
-                Intent navProfile = new Intent(MenuFragment.this.getActivity(), ProfilActivity.class);
+                Intent navProfile = new Intent(MenuFragment.this.getActivity(), LoginActivity.class);
                 startActivity(navProfile);
                 return true;
 

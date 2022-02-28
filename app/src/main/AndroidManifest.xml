@@ -10,7 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cavalier">
         <activity android:name=".EngagementActivity"></activity>
-        <activity android:name=".ProfilActivity" />
+        <activity android:name=".ProfilActivity">
+        </activity>
         <activity android:name=".EquideActivity" />
         <activity android:name=".ClubActivity" />
         <activity android:name=".RegisterActivity" />

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/lesbackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,32 +10,34 @@
     <RelativeLayout
         style="@style/Theme.Cavalier"
         android:layout_width="match_parent"
-        android:layout_height="234dp">
+        android:layout_height="352dp">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
-            style="@style/lesbackground"
-            android:layout_width="59dp"
-            android:layout_height="65dp"
+            android:layout_width="49dp"
+            android:layout_height="59dp"
             android:layout_alignParentLeft="true"
+            android:background="#00FAD5A6"
             android:minHeight="100dp"
-            android:theme="@style/menu_cavalier" />
+            android:theme="@style/menu_cavalier"
+            tools:visibility="visible" />
 
         <fragment
             android:id="@+id/fragment2"
             android:name="fr.lajotsarthou.cavalier.MenuFragment"
-            android:layout_width="160dp"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="214dp"
             android:layout_alignTop="@id/toolbar"
-            android:layout_marginTop="0dp" />
+            android:layout_marginTop="52dp" />
 
         <ImageView
             android:id="@+id/logo_cavalier"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
+            android:layout_width="296dp"
+            android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:layout_weight="1"
-            android:paddingRight="25dp"
+            android:paddingTop="50dp"
+            android:paddingRight="110dp"
             app:srcCompat="@drawable/logo_cavalier_recadrer" />
 
     </RelativeLayout>
@@ -46,7 +49,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="140dp" />
+            android:layout_height="22dp" />
 
         <Button
             android:id="@+id/bRechercheClub"
