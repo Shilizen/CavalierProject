@@ -2,15 +2,18 @@ package fr.lajotsarthou.cavalier;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 
+import fr.lajotsarthou.cavalier.modele.UserModele;
+
 public class CavalierDbOpenHelper extends SQLiteOpenHelper {
     private static final int BASE_VERSION = 1;
-    private static final String BASE_NOM = "cavalier";
+    private static final String BASE_NOM = "cavalier.db";
 
     //table 1 - enregistrement des cavaliers
     private static final String TABLE_CAVALIER = "table_cavalier";
@@ -78,33 +81,39 @@ public class CavalierDbOpenHelper extends SQLiteOpenHelper {
     private static final String TABLE_USER = "table_user";
     public static final String COLONNE_IDUSER = "idUser";
     public static final int COLONNE_IDUSER_ID = 0;
-    public static final String COLONNE_USERNAME = "numUsername";
+    public static final String COLONNE_USERNAME = "username";
     public static final int COLONNE_USERNAME_ID = 1;
-    public static final String COLONNE_PASSWORD = "paswword";
+    public static final String COLONNE_PASSWORD = "password";
     public static final int COLONNE_PASSWORD_ID = 2;
+
+    private static final String REQUETE_CREATION_BD_USER = "create table " + TABLE_USER + " ( "
+            + COLONNE_IDUSER + " INTEGER primary key autoincrement, "
+            + COLONNE_USERNAME + " TEXT not null, "
+            + COLONNE_PASSWORD + " text not null);";
 
 
     private static final String REQUETE_CREATION_DB_TABLECAV = "create table " + TABLE_CAVALIER + " ( "
-            + COLONNE_IDCAVALIER + " integer autoincrement, "
+            + COLONNE_IDCAVALIER + " integer auto_increment, "
             + COLONNE_NOM + " text not null, "
             + COLONNE_PRENOM + " text not null, "
             + COLONNE_AGE + " integer not null, "
             + COLONNE_SEXE + " text not null, "
             + COLONNE_NIVEAU + " text not null, "
             + COLONNE_NUMLICENCE + " text primary key not null, "
-            + COLONNE_PHOTO + " text);";
+            + COLONNE_PHOTO + " text) ";
 
-    private static final String REQUETE_CREATION_BD_TABLEEQ = " create table " + TABLE_EQUIDE + " ( "
+    private static final String REQUETE_CREATION_BD_TABLEEQ = "create table " + TABLE_EQUIDE + " ( "
             + COLONNE_IDEQUIDE + " INTEGER primary key autoincrement, "
             + COLONNE_NOMCOMPLET + " TEXT not null, "
             + COLONNE_NOMECURIE + " text not null, "
             + COLONNE_AGEEQ + " integer not null, "
             + COLONNE_SEXEEQ + " text not null, "
             + COLONNE_RACE + " text not null, "
-            + COLONNE_ROBE + " text, " + COLONNE_NUMSIRE + " integer, "
-            + COLONNE_PROPRIETAIRE + " text not null);";
+            + COLONNE_ROBE + " text, "
+            + COLONNE_NUMSIRE + " integer, "
+            + COLONNE_PROPRIETAIRE + " text not null) ";
 
-    private static final String REQUETE_CREATION_BD_TABLEENG = " create table " + TABLE_ENGAGEMENT + " ( "
+    private static final String REQUETE_CREATION_BD_TABLEENG = "create table " + TABLE_ENGAGEMENT + " ( "
             + COLONNE_IDENGAGEMENT + " INTEGER primary key autoincrement, "
             + COLONNE_NUMENGAGEMENT + " INTEGER NOT NULL, "
             + COLONNE_LIEUXCONCOURS + " TEXT NOT NULL, "
@@ -115,16 +124,17 @@ public class CavalierDbOpenHelper extends SQLiteOpenHelper {
             + COLONNE_NUMLICENCECONCOURS + " TEXT NOT NULL, "
             + COLONNE_IDCHEVAL + " INTEGER NOT NULL, "
             + "FOREIGN KEY(" + COLONNE_NUMLICENCECONCOURS + ") REFERENCES "+ TABLE_CAVALIER + " (" + COLONNE_NUMLICENCE + "), "
-            + "FOREIGN KEY(" + COLONNE_IDCHEVAL + ") REFERENCES "+ TABLE_EQUIDE + " (" + COLONNE_IDEQUIDE + "));";
+            + "FOREIGN KEY(" + COLONNE_IDCHEVAL + ") REFERENCES "+ TABLE_EQUIDE + " (" + COLONNE_IDEQUIDE + ")) ";
 
-    private static final String REQUETE_CREATION_BD = REQUETE_CREATION_BD_TABLEEQ + REQUETE_CREATION_DB_TABLECAV + REQUETE_CREATION_BD_TABLEENG;
+
+    private static final String REQUETE_CREATION= REQUETE_CREATION_BD_TABLEEQ + REQUETE_CREATION_DB_TABLECAV + REQUETE_CREATION_BD_TABLEENG;
 
     private SQLiteDatabase bCavalier;
 
 
 
-    public CavalierDbOpenHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+    public CavalierDbOpenHelper(Context context) {
+        super(context, BASE_NOM, null, BASE_VERSION);
     }
 
 
@@ -136,14 +146,18 @@ public class CavalierDbOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(REQUETE_CREATION_BD);
+        db.execSQL(REQUETE_CREATION_BD_TABLEEQ);
+        db.execSQL(REQUETE_CREATION_BD_TABLEENG);
+        db.execSQL(REQUETE_CREATION_DB_TABLECAV);
+        db.execSQL(REQUETE_CREATION_BD_USER);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("drop table " + TABLE_EQUIDE + ";");
-        db.execSQL("drop table " + TABLE_EQUIDE + ";");
-        db.execSQL(" drop table " + TABLE_ENGAGEMENT + ";");
+        db.execSQL("drop table if exists " + TABLE_EQUIDE + ";");
+        db.execSQL("drop table if exists " + TABLE_EQUIDE + ";");
+        db.execSQL("drop table if exists " + TABLE_USER + ";");
+        db.execSQL("drop table if exists " + TABLE_ENGAGEMENT + ";");
         onCreate(db);
     }
 
@@ -172,5 +186,51 @@ public class CavalierDbOpenHelper extends SQLiteOpenHelper {
         valeur.put(CavalierDbOpenHelper.COLONNE_PROPRIETAIRE, propriétaire.getText().toString());
 
         getWritableDatabase().insert(CavalierDbOpenHelper.TABLE_EQUIDE, null, valeur);
+    }
+    // procédure permettant l'enregistrement des données d'inscription dans la bdd
+    public Boolean insertValue(EditText username, EditText password){
+        ContentValues valeur = new ContentValues();
+
+        valeur.put(CavalierDbOpenHelper.COLONNE_USERNAME, username.getText().toString());
+        valeur.put(CavalierDbOpenHelper.COLONNE_PASSWORD, password.getText().toString());
+
+        getWritableDatabase().insert(CavalierDbOpenHelper.TABLE_USER, null, valeur);
+        return true;
+    }
+
+    public UserModele cursorToUserModele(Cursor c, boolean one){
+        if (c.getCount() == 0){
+            return  null;
+        }
+        if (one == true){
+            c.moveToFirst();
+        }
+        UserModele user = new UserModele();
+
+        user.setUsername(c.getString(CavalierDbOpenHelper.COLONNE_USERNAME_ID));
+        user.setPassword(c.getString(CavalierDbOpenHelper.COLONNE_PASSWORD_ID));
+
+        if (one==true)
+            c.close();
+        return user;
+
+    }
+
+    private String verifUsername = "select " + COLONNE_USERNAME
+            + " from " + TABLE_USER;
+
+    public UserModele getUser() {
+        getReadableDatabase();
+        Cursor c = bCavalier.rawQuery((verifUsername), null);
+        return cursorToUserModele(c, true);
+    }
+
+    public UserModele getPassword(String password) {
+        Cursor c = bCavalier.query(TABLE_USER,
+                new String[] {
+                        COLONNE_IDUSER, COLONNE_USERNAME, COLONNE_PASSWORD },
+                null, null, null,
+                COLONNE_NOM + " LIKE " + password, null);
+        return cursorToUserModele(c, true);
     }
 }

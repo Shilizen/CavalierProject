@@ -82,4 +82,19 @@
         android:layout_height="66dp"
         android:text="Se connecter" />
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="25dp" />
+
+    <Button
+        android:id="@+id/bInscription"
+        android:layout_width="221dp"
+        android:layout_height="36dp"
+        android:layout_gravity="center"
+        android:background="#00FAD5A6"
+        android:text="Pas de compte ? Inscrit toi !"
+        android:textColor="@color/cbrown_fonce"
+        android:textSize="12sp"
+        app:backgroundTint="#00FFFFFF" />
+
 </LinearLayout>

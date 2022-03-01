@@ -18,6 +18,12 @@
         android:layout_width="match_parent"
         android:layout_height="268dp">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarRegister"
+            android:layout_width="72dp"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize" />
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
@@ -40,7 +46,7 @@
         android:layout_height="25dp" />
 
     <EditText
-        android:id="@+id/eRegisterNumLicence"
+        android:id="@+id/eUsername"
         style="@style/editTextStyle"
         android:layout_width="383dp"
         android:layout_height="53dp"
@@ -55,7 +61,7 @@
         android:layout_height="35dp" />
 
     <EditText
-        android:id="@+id/eRegisterMdp"
+        android:id="@+id/ePassword"
         style="@style/editTextStyle"
         android:layout_width="383dp"
         android:layout_height="53dp"
