@@ -2,11 +2,13 @@ package fr.lajotsarthou.cavalier;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,8 +22,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText password;
     private Button bConnexion;
     private Button bInscritToi;
-    private Boolean isConnected = false;
-    private CavalierDbOpenHelper maBase = new CavalierDbOpenHelper(this);
+    private UserModele loginUser;
+    private CavalierDbOpenHelper maBase;
     private SQLiteDatabase maBaseDonnees;
 
     @Override
@@ -32,47 +34,48 @@ public class LoginActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarLogin);
         setSupportActionBar(toolbar);
 
+        init();
+        bConnexion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                verifUsername(username, password);
+                if (loginUser.getConnected() == true) {
+                    Intent navConnexion = new Intent(LoginActivity.this, AccueilActivity.class);
+                    startActivity(navConnexion);
+                } else {
+                    username.setText("Numéro de licence incorrect");
+                    password.setText("");
+                }
+            }
+        });
+        bInscritToi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent navVersInscription = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(navVersInscription);
+            }
+        });
+    }
+
+    public void init(){
+        maBase = new CavalierDbOpenHelper(this);
         username = (EditText) findViewById(R.id.eCoNumLicence);
         password = (EditText) findViewById(R.id.eCoMdp);
         bConnexion = (Button) findViewById(R.id.bConnexion);
         bInscritToi = (Button) findViewById(R.id.bInscription);
 
-        bConnexion.setOnClickListener(this::onClick);
-        bInscritToi.setOnClickListener(this::onClick);
-
-        verifUsername(username);
+        loginUser = new ViewModelProvider(LoginActivity.this).get(UserModele.class);
     }
 
-    public void onClick(View btn){
-        int id = btn.getId();
-        switch (id){
-            case R.id.bConnexion:
-                if (isConnected == true) {
-                    Intent navConnexion = new Intent(this, AccueilActivity.class);
-                    startActivity(navConnexion);
-                } else {
-                    username.setText("Numéro de licence incorrect");
-                    password.setText("Mot de passe incorrect");
-                }
-            case R.id.bInscription:
-                Intent navVersInscription = new Intent(this, RegisterActivity.class);
-                startActivity(navVersInscription);
-        }
-    }
-
-    public Boolean getIsConnected(){
-        return isConnected;
-    }
-
-    public Boolean setIsConnected(Boolean c){
-        return this.isConnected = c;
-    }
-
-    public boolean verifUsername(EditText eUsername){
-        if (maBase.getUser().equals(eUsername.getText().toString())){
-            return setIsConnected(true);
+    public boolean verifUsername(EditText eUsername, EditText ePassword){
+        String sUser = eUsername.getText().toString();
+        String sPass = ePassword.getText().toString();
+        if (maBase.checkAccount(sUser, sPass) == true){
+            loginUser.setConnected(true);
+            return loginUser.getConnected();
         } else {
-            return  setIsConnected(false);
+            loginUser.setConnected(false);
+            return loginUser.getConnected();
         }
     }
 

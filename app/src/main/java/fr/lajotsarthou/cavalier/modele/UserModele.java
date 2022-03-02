@@ -1,8 +1,11 @@
 package fr.lajotsarthou.cavalier.modele;
 
-public class UserModele {
+import androidx.lifecycle.ViewModel;
+
+public class UserModele extends ViewModel {
     private String username;
     private String password;
+    private Boolean isConnected;
 
     public UserModele(String username, String password){
         this.username = username;
@@ -27,5 +30,13 @@ public class UserModele {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Boolean getConnected() {
+        return isConnected;
+    }
+
+    public void setConnected(Boolean connected) {
+        isConnected = connected;
     }
 }

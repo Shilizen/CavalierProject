@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -13,12 +14,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import fr.lajotsarthou.cavalier.modele.UserModele;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link MenuFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class MenuFragment extends Fragment {
+    private UserModele user;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -59,6 +63,7 @@ public class MenuFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         setHasOptionsMenu(true);
+        user = new ViewModelProvider(MenuFragment.this).get(UserModele.class);
     }
 
     @Override
@@ -76,11 +81,18 @@ public class MenuFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Boolean connecte = user.getConnected();
         int id = item.getItemId();
         switch (id) {
             case R.id.mProfile:
-                Intent navProfile = new Intent(MenuFragment.this.getActivity(), LoginActivity.class);
-                startActivity(navProfile);
+                if (connecte == true) {
+                    Intent navProfile = new Intent(MenuFragment.this.getActivity(), ProfilActivity.class);
+                    startActivity(navProfile);
+                } else {
+                    Intent navProfile = new Intent(MenuFragment.this.getActivity(), LoginActivity.class);
+                    startActivity(navProfile);
+
+                }
                 return true;
 
             case R.id.mRechercherClub:

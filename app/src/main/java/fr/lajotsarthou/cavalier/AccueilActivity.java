@@ -2,15 +2,19 @@ package fr.lajotsarthou.cavalier;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import fr.lajotsarthou.cavalier.modele.UserModele;
+
 public class AccueilActivity extends AppCompatActivity {
     private Button bClub;
     private Button bEquide;
+    private UserModele user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +29,7 @@ public class AccueilActivity extends AppCompatActivity {
         //toolbar.getNavigationIcon();
         //toolbar.inflateMenu(R.menu.menuhamburger);
 
-        bClub = (Button) findViewById(R.id.bRechercheClub);
-        bEquide = (Button) findViewById(R.id.bRechercheEquide);
+        init();
         bClub.setOnClickListener(this::onClick);
         bEquide.setOnClickListener(this::onClick);
 
@@ -43,6 +46,13 @@ public class AccueilActivity extends AppCompatActivity {
                 startActivity(navRechEq);
 
         }
+    }
+
+    public void init(){
+        user = new ViewModelProvider(AccueilActivity.this).get(UserModele.class);
+
+        bClub = (Button) findViewById(R.id.bRechercheClub);
+        bEquide = (Button) findViewById(R.id.bRechercheEquide);
     }
 
 

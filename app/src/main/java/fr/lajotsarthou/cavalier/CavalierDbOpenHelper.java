@@ -1,10 +1,12 @@
 package fr.lajotsarthou.cavalier;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.widget.EditText;
 
 import androidx.annotation.Nullable;
@@ -57,23 +59,23 @@ public class CavalierDbOpenHelper extends SQLiteOpenHelper {
     //table 3 - enregistrement des engagements / résultats des compétitions
     private static final String TABLE_ENGAGEMENT = "table_engagement";
     public static final String COLONNE_IDENGAGEMENT = "idEngagement";
-    public static final int COLONNE_IDENGAGEMENT_ID = 0;
+    public static final int COLONNE_IDENGAGEMENT_ID = 1;
     public static final String COLONNE_NUMENGAGEMENT = "numEngagement";
-    public static final int COLONNE_NUMENGAGEMENT_ID = 1;
+    public static final int COLONNE_NUMENGAGEMENT_ID = 2;
     public static final String COLONNE_LIEUXCONCOURS = "lieu";
-    public static final int COLONNE_LIEUCONCOURS_ID = 2;
+    public static final int COLONNE_LIEUCONCOURS_ID = 3;
     public static final String COLONNE_DISCIPLINE = "discipline";
-    public static final int COLONNE_DISCIPLINE_ID = 3;
+    public static final int COLONNE_DISCIPLINE_ID = 4;
     public static final String COLONNE_CATEGORIE = "categorie";
-    public static final int COLONNE_CATEGORIE_ID = 4;
+    public static final int COLONNE_CATEGORIE_ID = 5;
     public static final String COLONNE_NOMCONCOURS = "nomConcours";
-    public static final int COLONNE_NOMCONCOURS_ID = 5;
+    public static final int COLONNE_NOMCONCOURS_ID = 6;
     public static final String COLONNE_CLASSEMENT = "classement";
-    public static final int COLONNE_CLASSEMENT_ID = 6;
+    public static final int COLONNE_CLASSEMENT_ID = 7;
     public static final String COLONNE_NUMLICENCECONCOURS = "numLicence";
-    public static final int COLONNE_NUMLICENCECONCOURS_ID = 7;
+    public static final int COLONNE_NUMLICENCECONCOURS_ID = 8;
     public static final String COLONNE_IDCHEVAL = "IdCheval";
-    public static final int COLONNE_IDCHEVAL_ID = 8;
+    public static final int COLONNE_IDCHEVAL_ID = 9;
     public static final String FK_EQUIDE_ID = "fk_equide_id";
     public static final String FK_CAVALIER_NUMLICENCE = "fk_cavalier_numlicence";
 
@@ -198,39 +200,87 @@ public class CavalierDbOpenHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public UserModele cursorToUserModele(Cursor c, boolean one){
-        if (c.getCount() == 0){
-            return  null;
-        }
-        if (one == true){
-            c.moveToFirst();
-        }
-        UserModele user = new UserModele();
+   public UserModele getAllUser(){
+       UserModele user  = new UserModele();
+       bCavalier = getReadableDatabase();
 
-        user.setUsername(c.getString(CavalierDbOpenHelper.COLONNE_USERNAME_ID));
-        user.setPassword(c.getString(CavalierDbOpenHelper.COLONNE_PASSWORD_ID));
+       Log.d("TEST", "Démarrage de la fonction");
 
-        if (one==true)
-            c.close();
-        return user;
+       Cursor c = bCavalier.query(TABLE_USER,
+               new String[]{COLONNE_USERNAME, COLONNE_PASSWORD},
+               null,
+               null, null , null, null);
+       Log.d("TEST", "getUser: ce que retourne la requête");
 
-    }
+       try {
+           if (c != null && c.moveToFirst())
+           {
 
-    private String verifUsername = "select " + COLONNE_USERNAME
-            + " from " + TABLE_USER;
+               user.setUsername(c.getString(0));
+               user.setPassword(c.getString(1));
+               Log.d("TEST", "getUser: ce que retourne le ViewModele");
 
-    public UserModele getUser() {
-        getReadableDatabase();
-        Cursor c = bCavalier.rawQuery((verifUsername), null);
-        return cursorToUserModele(c, true);
-    }
+               return user;
+           }
+       } catch (Exception e) {
+           e.printStackTrace();
+       } finally {
+           if (c != null)
+               System.out.println("Cursor non vide");
+               c.close();
+       }
+       return null;
+   }
 
-    public UserModele getPassword(String password) {
+    public Cursor getByUser(){
+        UserModele user  = new UserModele();
+        bCavalier = getReadableDatabase();
+
+        Log.d("TEST", "Démarrage de la fonction");
+
+
         Cursor c = bCavalier.query(TABLE_USER,
-                new String[] {
-                        COLONNE_IDUSER, COLONNE_USERNAME, COLONNE_PASSWORD },
-                null, null, null,
-                COLONNE_NOM + " LIKE " + password, null);
-        return cursorToUserModele(c, true);
+                new String[]{COLONNE_IDUSER,COLONNE_USERNAME, COLONNE_PASSWORD},
+                null,
+                null, null , null, null);
+        Log.d("TEST", "getUser: ce que retourne la requête");
+
+        return c;
     }
+
+    public Boolean checkAccount(String user, String password){
+        Cursor c = getByUser();
+        Log.d("Check", user + " , " + password);
+        int i;
+        /**for (i = 0; i < getByUser().getCount(); i++){
+            if(getByUser().getString(1).equals(user) && getByUser().getString(2).equals(password)){
+                return true;
+            }
+
+        }**/
+        try {
+            if (c != null && c.moveToFirst())
+            {
+
+                if(c.getString(1).equals(user) && c.getString(2).equals(password)){
+                    return true;
+                }
+                Log.d("TEST", "getUser: ce que retourne le ViewModele");
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (c != null)
+                System.out.println("Cursor non vide");
+            c.close();
+        }
+        return false;
+    }
+
+   public Cursor checkUser(String username){
+        bCavalier = getReadableDatabase();
+        Cursor c = bCavalier.rawQuery(TABLE_USER, new String[]{COLONNE_USERNAME});
+        return c;
+   }
 }

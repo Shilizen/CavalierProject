@@ -67,7 +67,7 @@
         android:layout_height="53dp"
         android:background="#FFFFFF"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:text=""
         android:hint="Choisissez un mot de passe"/>
 
