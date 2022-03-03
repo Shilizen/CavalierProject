@@ -11,6 +11,10 @@ import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import fr.lajotsarthou.cavalier.modele.User;
 import fr.lajotsarthou.cavalier.modele.UserModele;
 
 public class CavalierDbOpenHelper extends SQLiteOpenHelper {
@@ -252,35 +256,59 @@ public class CavalierDbOpenHelper extends SQLiteOpenHelper {
         Cursor c = getByUser();
         Log.d("Check", user + " , " + password);
         int i;
-        /**for (i = 0; i < getByUser().getCount(); i++){
-            if(getByUser().getString(1).equals(user) && getByUser().getString(2).equals(password)){
-                return true;
-            }
-
-        }**/
         try {
+
             if (c != null && c.moveToFirst())
+
+                Log.d("Check", "Cursor non vide");
             {
-
-                if(c.getString(1).equals(user) && c.getString(2).equals(password)){
-                    return true;
+                for (i = 0; i < getByUser().getCount(); i++){
+                    Log.d("Check", "La boucle commence");
+                    if (c.getString(1).equals(user) && c.getString(2).equals(password)) {
+                        Log.d("Check", "La boucle retourne quelque chose");
+                        return true;
+                    } else {
+                        return false;
+                    }
                 }
-                Log.d("TEST", "getUser: ce que retourne le ViewModele");
-
+                Log.d("Check", "La boucle se termine");
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             if (c != null)
-                System.out.println("Cursor non vide");
+                System.out.println("Cursor va se fermer");
             c.close();
         }
         return false;
     }
 
-   public Cursor checkUser(String username){
-        bCavalier = getReadableDatabase();
-        Cursor c = bCavalier.rawQuery(TABLE_USER, new String[]{COLONNE_USERNAME});
-        return c;
-   }
+    public List<User> getAllUsers(){
+        ArrayList<User> userList = new ArrayList<>();
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USER+ ";",null);
+        Log.d("List", "Requête prise en compte");
+
+        if (cursor.moveToFirst()) {
+            Log.d("List", "Début du curseur");
+            do {
+                User user = new User();
+                user.setIdUser(cursor.getInt(0));
+                user.setNom(cursor.getString(1));
+                Log.d("List", user.getNom());
+                user.setMdp(cursor.getString(2));
+                Log.d("List", "fermeture du curseur");
+
+                userList.add(user);
+
+                Log.d("List", "Liste ajoutée" + userList.toString());
+            } while (cursor.moveToNext());
+            Log.d("List", "fermeture du curseur");
+        }
+        db.close();
+        Log.d("List", "fermeture de la base de donnée");
+
+        return userList;
+    }
 }

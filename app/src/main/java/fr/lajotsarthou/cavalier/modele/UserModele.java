@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel;
 public class UserModele extends ViewModel {
     private String username;
     private String password;
-    private Boolean isConnected;
+    private boolean isConnected;
 
     public UserModele(String username, String password){
         this.username = username;
@@ -32,7 +32,7 @@ public class UserModele extends ViewModel {
         this.password = password;
     }
 
-    public Boolean getConnected() {
+    public boolean getConnected() {
         return isConnected;
     }
 

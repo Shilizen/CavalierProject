@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     style="@style/lesbackground"
-    tools:context=".RegisterActivity">
+    tools:context=".FouasserieActivity">
 
     <fragment
         android:id="@+id/fragment"
@@ -37,33 +37,17 @@
 
     <TextView
         style="@style/txtViewPetit"
-        android:id="@+id/tConnexion"
+        android:id="@+id/tFouasserie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/acceder_centre"
+        android:text="@string/info_fouasserie"
         android:typeface="monospace" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="35dp" />
-
-    <Button
+    <WebView
+        android:id="@+id/wFouasserie"
         style="@style/boutton_cavalier"
-        android:id="@+id/bFouasserie"
-        android:layout_width="389dp"
-        android:layout_height="wrap_content"
-        android:text="Les Ecuries de la Fouasserie" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="35dp" />
-
-    <Button
-        style="@style/boutton_cavalier"
-        android:id="@+id/bJouv"
-        android:layout_width="389dp"
-        android:layout_height="wrap_content"
-        android:text="Les Poneys de la Jouv'" />
+        android:layout_width="394dp"
+        android:layout_height="353dp" />
 
 
 </LinearLayout>

@@ -2,25 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <item
-        android:id="@+id/mProfile"
+        android:id="@+id/mLogin"
         style="@style/menu_cavalier"
         android:icon="@drawable/profile_image"
-        android:title="Ma page cavalier" />
+        android:title="Accéder à mon espace" />
 
     <item
         android:id="@+id/mRechercherClub"
         android:icon="@drawable/centreeq"
         android:title="Rechercher un club" />
 
-    <item
-        android:id="@+id/mRechercherEquide"
-        android:icon="@drawable/equide"
-        android:title="Rechercher un équidé" />
-    <item
-        android:id="@+id/mEngagementsRes"
-        android:icon="@drawable/flotvict"
-        android:title="Mes engagements et résultats" />
     <item
         android:id="@+id/mAccueil"
         android:icon="@android:drawable/ic_menu_revert"

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Rider</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Contraseña</string>
+    <string name="action_sign_in">Iniciar sesión o registrarse</string>
+    <string name="action_sign_in_short">Acceder</string>
+    <string name="invalid_username">No es un nombre de usuario válido</string>
+    <string name="invalid_password">La contraseña debe tener más de 5 caracteres</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="rechercher_un_quid">Buscar un equino</string>
+    <string name="rechercher_un_club_questre">Buscar un centro de equitación</string>
+    <string name="isConnected">false</string>
+    <string name="se_connecter">Acceder</string>
+    <string name="acceder_centre">Ir a la página del centro ecuestre de su elección</string>
+</resources>

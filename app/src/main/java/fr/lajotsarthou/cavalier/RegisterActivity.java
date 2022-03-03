@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -32,16 +34,16 @@ public class RegisterActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SharedPreferences preferences = getSharedPreferences("login", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
                 myBase.insertValue(username, password);
-                user.setUsername(username.getText().toString());
-                user.setPassword(password.getText().toString());
-                user.setConnected(true);
+                editor.putString("nom", username.getText().toString());
+                editor.apply();
                 myBase.close();
                 username.setText("");
                 password.setText("");
 
                 Intent navAcceuilCo = new Intent(RegisterActivity.this, AccueilActivity.class);
-                navAcceuilCo.putExtra("getConnected", user.getConnected());
                 startActivity(navAcceuilCo);
             }
         });

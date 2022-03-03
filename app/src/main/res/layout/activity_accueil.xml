@@ -32,13 +32,22 @@
 
         <ImageView
             android:id="@+id/logo_cavalier"
-            android:layout_width="296dp"
-            android:layout_height="match_parent"
+            android:layout_width="304dp"
+            android:layout_height="299dp"
             android:layout_alignParentRight="true"
             android:layout_weight="1"
             android:paddingTop="50dp"
             android:paddingRight="110dp"
             app:srcCompat="@drawable/logo_cavalier_recadrer" />
+
+        <TextView
+            style="@style/texte_view"
+            android:id="@+id/tWelcome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vous n'êtes pas connecté"
+            android:layout_alignParentRight="true"
+            android:layout_alignBottom="@id/logo_cavalier"/>
 
     </RelativeLayout>
 
@@ -50,24 +59,32 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="22dp" />
-
         <Button
-            android:id="@+id/bRechercheClub"
+            android:id="@+id/bDisconnect"
             style="@style/boutton_cavalier"
             android:layout_width="360dp"
             android:layout_height="wrap_content"
-            android:text="@string/rechercher_un_club_questre" />
+            android:text="@string/se_deconnecter"
+            android:visibility="invisible"/>
+
+        <Button
+            android:id="@+id/bLoginA"
+            style="@style/boutton_cavalier"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:text="@string/se_connecter" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="34dp" />
 
-        <Button
-            android:id="@+id/bRechercheEquide"
+        <WebView
+            android:id="@+id/wActuFfe"
             style="@style/boutton_cavalier"
-            android:layout_width="360dp"
-            android:layout_height="wrap_content"
-            android:text="@string/rechercher_un_quid" />
+            android:layout_width="390dp"
+            android:layout_height="264dp" />
+
+
     </LinearLayout>
 
 </LinearLayout>
