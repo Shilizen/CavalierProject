@@ -1,41 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    style="@style/lesbackground"
-    tools:context=".ProfilActivity">
-
-    <fragment
-        android:id="@+id/fragmentMenu"
-        android:name="fr.lajotsarthou.cavalier.MenuFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="268dp">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbarProfile"
-            android:layout_width="72dp"
-            android:layout_height="wrap_content"
-            android:minHeight="?attr/actionBarSize" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="262dp"
-            android:layout_height="241dp"
-            android:layout_marginLeft="78dp"
-            app:srcCompat="@drawable/logo_cavalier_recadrer" />
-    </FrameLayout>
-
-    <TextView
-        style="@style/texte_view"
-        android:id="@+id/tNomUser"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Je suis un poireau !" />
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
 </LinearLayout>

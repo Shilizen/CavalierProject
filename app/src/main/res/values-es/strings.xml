@@ -3,4 +3,18 @@
     <string name="info_jouv">Información sobre el centro ecuestre Les Poneys de la Jouv\'</string>
     <string name="se_deconnecter">Desconexión</string>
     <string name="info_fouasserie">Información sobre el centro ecuestre Les Ecuries de la Fouasserie</string>
+    <string name="nom">Patronímico</string>
+    <string name="pr_nom">Apellido</string>
+    <string name="niveau">Grado</string>
+    <string name="sexe">Sexo</string>
+    <string name="age">Edad</string>
+    <string name="num_ro_de_licence">Número de licencia</string>
+    <string name="editer_mon_compte">Edita mi cuenta</string>
+    <string name="logo">Logo</string>
+    <string name="entrez_votre_nom_de_famille">Introduzca su apellido</string>
+    <string name="entrez_votre_pr_nom">Introduzca su nombre de pila</string>
+    <string name="entrez_votre_ge">Introduzca su edad</string>
+    <string name="entrez_votre_genre">Introduzca su sexo</string>
+    <string name="entrez_votre_niveau_galop_1_2">Introduzca su nivel (G1, 2 ...)</string>
+    <string name="editer_vos_informations_personnelles">Editar su información personal</string>
 </resources>

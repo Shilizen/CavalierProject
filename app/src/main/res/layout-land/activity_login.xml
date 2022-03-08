@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    style="@style/lesbackground"
+    tools:context=".RegisterActivity">
+
+    <fragment
+        android:id="@+id/fragment"
+        android:name="fr.lajotsarthou.cavalier.MenuFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarLogin"
+            android:layout_width="72dp"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                style="@style/texte_view"
+                android:id="@+id/tConnexion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Connexion"
+                android:typeface="monospace" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="25dp" />
+
+            <EditText
+                android:id="@+id/eCoNumLicence"
+                style="@style/editTextStyle"
+                android:layout_width="383dp"
+                android:layout_height="53dp"
+                android:background="#FFFFFF"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text=""
+                android:hint="Entrez votre numéro de licence"/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="35dp" />
+
+            <EditText
+                android:id="@+id/eCoMdp"
+                style="@style/editTextStyle"
+                android:layout_width="383dp"
+                android:layout_height="53dp"
+                android:background="#FFFFFF"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:text=""
+                android:hint="Entrez votre mot de passe"/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="45dp" />
+
+            <Button
+                style="@style/boutton_cavalier"
+                android:id="@+id/bConnexion"
+                android:layout_width="383dp"
+                android:layout_height="66dp"
+                android:text="Se connecter" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="25dp" />
+
+            <Button
+                android:id="@+id/bInscription"
+                android:layout_width="221dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center"
+                android:background="#00FAD5A6"
+                android:text="Pas de compte ? Inscrit toi !"
+                android:textColor="@color/cbrown_fonce"
+                android:textSize="12sp"
+                app:backgroundTint="#00FFFFFF" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

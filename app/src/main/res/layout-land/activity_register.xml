@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    style="@style/lesbackground"
+    tools:context=".RegisterActivity">
+
+    <fragment
+        android:id="@+id/fragment4"
+        android:name="fr.lajotsarthou.cavalier.MenuFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="268dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarRegister"
+            android:layout_width="72dp"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="255dp"
+            app:srcCompat="@drawable/logo_cavalier_recadrer" />
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                style="@style/texte_view"
+                android:id="@+id/tRegister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Inscription"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:typeface="monospace" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="25dp" />
+
+            <EditText
+                android:id="@+id/eUsername"
+                style="@style/editTextStyle"
+                android:layout_width="383dp"
+                android:layout_height="53dp"
+                android:background="#FFFFFF"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text=""
+                android:hint="Entrez votre numéro de licence"/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="35dp" />
+
+            <EditText
+                android:id="@+id/ePassword"
+                style="@style/editTextStyle"
+                android:layout_width="383dp"
+                android:layout_height="53dp"
+                android:background="#FFFFFF"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:text=""
+                android:hint="Choisissez un mot de passe"/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="45dp" />
+
+            <Button
+                style="@style/boutton_cavalier"
+                android:id="@+id/bRegister"
+                android:layout_width="383dp"
+                android:layout_height="66dp"
+                android:text="S'inscrire" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

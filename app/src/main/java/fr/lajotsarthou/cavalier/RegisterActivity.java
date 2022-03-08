@@ -2,16 +2,19 @@ package fr.lajotsarthou.cavalier;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import fr.lajotsarthou.cavalier.modele.UserModele;
 
@@ -22,6 +25,7 @@ public class RegisterActivity extends AppCompatActivity {
     private CavalierDbOpenHelper myBase;
     private SQLiteDatabase db;
     private UserModele user;
+    private ImageView logoImg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         init();
+        chargerImage();
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,5 +61,20 @@ public class RegisterActivity extends AppCompatActivity {
         password = findViewById(R.id.ePassword);
         register = findViewById(R.id.bRegister);
         myBase = new CavalierDbOpenHelper(this);
+    }
+
+    public void chargerImage(){
+        new Thread(new Runnable() {
+            public void run() {
+                // a potentially time consuming task
+                logoImg = (ImageView) findViewById(R.id.imageView);
+                Drawable image = ContextCompat.getDrawable(RegisterActivity.this, R.drawable.logo_cavalier_recadrer);
+                logoImg.post(new Runnable() {
+                    public void run() {
+                        logoImg.setImageDrawable(image);
+                    }
+                });
+            }
+        }).start();
     }
 }

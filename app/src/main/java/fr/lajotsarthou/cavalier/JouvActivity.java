@@ -2,13 +2,17 @@ package fr.lajotsarthou.cavalier;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 
 public class JouvActivity extends AppCompatActivity {
     private WebView wJouv;
+    private ImageView logoImg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,7 +22,7 @@ public class JouvActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         init();
-
+        chargerImage();
         wJouv.getSettings().setDomStorageEnabled(true);
         wJouv.getSettings().setJavaScriptEnabled(true);
         wJouv.setWebViewClient(new WebViewClient());
@@ -26,6 +30,22 @@ public class JouvActivity extends AppCompatActivity {
     }
 
     private void init(){
-        wJouv = (WebView) findViewById(R.id.wJouv);
+
+    }
+
+    private void chargerImage(){
+        new Thread(new Runnable() {
+            public void run() {
+                wJouv = (WebView) findViewById(R.id.wJouv);
+                // a potentially time consuming task
+                logoImg = (ImageView) findViewById(R.id.imageView);
+                Drawable image = ContextCompat.getDrawable(JouvActivity.this, R.drawable.logo_cavalier_recadrer);
+                logoImg.post(new Runnable() {
+                    public void run() {
+                        logoImg.setImageDrawable(image);
+                    }
+                });
+            }
+        }).start();
     }
 }

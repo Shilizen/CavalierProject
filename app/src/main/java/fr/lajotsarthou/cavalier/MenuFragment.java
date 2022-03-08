@@ -56,13 +56,21 @@ public class MenuFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        preferences = getActivity().getSharedPreferences("login", Context.MODE_PRIVATE);
+        String nom = preferences.getString("nom", "");
         int id = item.getItemId();
 
         switch (id) {
             case R.id.mLogin:
+                if(!nom.equals("")) {
+                    Intent navProfile = new Intent(MenuFragment.this.getActivity(), ProfilActivity.class);
+                    startActivity(navProfile);
+                    return true;
+                } else {
                     Intent navLogin = new Intent(MenuFragment.this.getActivity(), LoginActivity.class);
                     startActivity(navLogin);
                     return true;
+                }
 
             case R.id.mRechercherClub:
                 Intent navRechC = new Intent(MenuFragment.this.getActivity(), ClubActivity.class);
@@ -73,6 +81,22 @@ public class MenuFragment extends Fragment {
                 Intent navAcc = new Intent(MenuFragment.this.getActivity(), AccueilActivity.class);
                 startActivity(navAcc);
                 return true;
+
+            case R.id.mRechercherEquide:
+                Intent navEquide = new Intent(MenuFragment.this.getActivity(), EquideActivity.class);
+                startActivity(navEquide);
+                return true;
+
+            case R.id.mEngagement:
+                if(!nom.equals("")) {
+                    Intent navEng = new Intent(MenuFragment.this.getActivity(), EngagementActivity.class);
+                    startActivity(navEng);
+                    return true;
+                } else {
+                    Intent navLoginEng = new Intent(MenuFragment.this.getActivity(), LoginActivity.class);
+                    startActivity(navLoginEng);
+                    return false;
+                }
         }
         return false;
     }

@@ -6,17 +6,23 @@
     <item
         android:id="@+id/mLogin"
         style="@style/menu_cavalier"
-        android:icon="@drawable/profile_image"
         android:title="Accéder à mon espace" />
 
     <item
         android:id="@+id/mRechercherClub"
-        android:icon="@drawable/centreeq"
-        android:title="Rechercher un club" />
+        android:title="@string/rechercher_un_club_questre" />
+
+    <item
+        android:id="@+id/mRechercherEquide"
+        android:title="@string/rechercher_un_quid" />
+
+    <item
+        android:id="@+id/mEngagement"
+        android:title="Mes engagements et résultats"
+        android:visible="true" />
 
     <item
         android:id="@+id/mAccueil"
-        android:icon="@android:drawable/ic_menu_revert"
         android:title="Accueil" />
 
 </menu>

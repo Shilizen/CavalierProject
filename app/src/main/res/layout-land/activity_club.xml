@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    style="@style/lesbackground"
+    tools:context=".RegisterActivity">
+
+    <fragment
+        android:id="@+id/fragment"
+        android:name="fr.lajotsarthou.cavalier.MenuFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="166dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarClub"
+            android:layout_width="72dp"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize" />
+
+        <ImageView
+            android:layout_gravity="center"
+            android:id="@+id/imageView"
+            android:layout_width="196dp"
+            android:layout_height="161dp"
+            app:srcCompat="@drawable/logo_cavalier_recadrer" />
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                style="@style/txtViewPetit"
+                android:id="@+id/tConnexion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/acceder_centre"
+                android:typeface="monospace" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="35dp" />
+
+            <Button
+                style="@style/boutton_cavalier"
+                android:id="@+id/bFouasserie"
+                android:layout_width="389dp"
+                android:layout_height="wrap_content"
+                android:text="Les Ecuries de la Fouasserie" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="35dp" />
+
+            <Button
+                style="@style/boutton_cavalier"
+                android:id="@+id/bJouv"
+                android:layout_width="389dp"
+                android:layout_height="wrap_content"
+                android:text="Les Poneys de la Jouv'" />
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</LinearLayout>

@@ -1,9 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    style="@style/lesbackground"
     tools:context=".EquideActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <fragment
+        android:id="@+id/fragment"
+        android:name="fr.lajotsarthou.cavalier.MenuFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarEquide"
+            android:layout_width="72dp"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="199dp"
+            android:layout_height="173dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/logo_cavalier_recadrer" />
+    </FrameLayout>
+
+    <TextView
+        style="@style/texte_view"
+        android:id="@+id/tConnexion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/rechercher_un_cheval"
+        android:typeface="monospace" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <SearchView
+        android:id="@+id/sView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:queryBackground="@color/cbrown_fonce"
+        android:queryHint="Taper le nom d'écurie du cheval recherché"
+        android:visibility="visible" />
+
+    <Button
+        android:id="@+id/bSearchEq"
+        style="@style/boutton_cavalier"
+        android:layout_width="383dp"
+        android:layout_height="wrap_content"
+        android:text="@string/rechercher_un_quid" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="56dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tId"
+                style="@style/txtViewPetit"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text=""
+                android:hint="@string/id"/>
+
+            <TextView
+                style="@style/txtViewPetit"
+                android:id="@+id/tNomC"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text=""
+                android:hint="@string/nom_complet"/>
+
+            <TextView
+                style="@style/txtViewPetit"
+                android:id="@+id/tNomE"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text=""
+                android:hint="@string/nom_d_curie"/>
+
+            <TextView
+                style="@style/txtViewPetit"
+                android:id="@+id/tAgeE"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text=""
+                android:hint="@string/age"/>
+
+            <TextView
+                style="@style/txtViewPetit"
+                android:id="@+id/tSexeE"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text=""
+                android:hint="@string/sexe"/>
+
+            <TextView
+                style="@style/txtViewPetit"
+                android:id="@+id/tRace"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text=""
+                android:hint="@string/race"/>
+
+            <TextView
+                style="@style/txtViewPetit"
+                android:id="@+id/tRobe"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text=""
+                android:hint="@string/robe"/>
+            <TextView
+                style="@style/txtViewPetit"
+                android:id="@+id/tProprietaire"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text=""
+                android:hint="@string/propri_taire"/>
+            <TextView
+                style="@style/txtViewPetit"
+                android:id="@+id/tEcurie"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text=""
+                android:hint="@string/ecurie_d_affiliation"/>
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

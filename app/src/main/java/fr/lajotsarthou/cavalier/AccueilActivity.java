@@ -2,18 +2,22 @@ package fr.lajotsarthou.cavalier;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.DrawableContainer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import fr.lajotsarthou.cavalier.modele.UserModele;
@@ -24,6 +28,7 @@ public class AccueilActivity extends AppCompatActivity {
     private WebView wActu;
     private TextView tWelcome;
     private Button bDeco;
+    private ImageView logoImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,15 +51,18 @@ public class AccueilActivity extends AppCompatActivity {
                 startActivity(navLogin);
             }
         });
-        wActu.getSettings().setDomStorageEnabled(true);
+        chargerimage();
+        /*wActu.getSettings().setDomStorageEnabled(true);
         wActu.getSettings().setJavaScriptEnabled(true);
         wActu.setWebViewClient(new WebViewClient());
-        wActu.loadUrl("https://www.ffe.com/actualites");
+        wActu.loadUrl("https://www.ffe.com/actualites");*/
 
         estConnecte();
         if(estConnecte() == true){
+            bDeco.setVisibility(View.VISIBLE);
             deconnexion();
         } else {
+
             Log.d("Deconnexion", "Le boulet est pas connecté ahahaha");
         }
 
@@ -62,17 +70,44 @@ public class AccueilActivity extends AppCompatActivity {
 
 
     public void init(){
+
         user = new ViewModelProvider(AccueilActivity.this).get(UserModele.class);
 
         bLogin = (Button) findViewById(R.id.bLoginA);
-        wActu = (WebView) findViewById(R.id.wActuFfe);
+        //wActu = (WebView) findViewById(R.id.wActuFfe);
         tWelcome = (TextView) findViewById(R.id.tWelcome);
         bDeco = (Button) findViewById(R.id.bDisconnect);
-        bDeco.setVisibility(View.VISIBLE);
 
         tWelcome.setText("Vous n'êtes pas connectés");
     }
+    public void chargerimage(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                logoImg = (ImageView) findViewById(R.id.imageView);
+                Drawable image = ContextCompat.getDrawable(AccueilActivity.this, R.drawable.logo_cavalier_recadrer);
+                logoImg.post(new Runnable() {
+                    public void run() {
+                        logoImg.setImageDrawable(image);
+                    }
+                });
 
+                wActu = (WebView) findViewById(R.id.wActuFfe);
+                wActu.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        wActu.getSettings().setDomStorageEnabled(true);
+                        wActu.getSettings().setJavaScriptEnabled(true);
+                        wActu.setWebViewClient(new WebViewClient());
+                        wActu.loadUrl("https://www.ffe.com/actualites");
+                    }
+                });
+            }
+
+        }).start();
+
+
+    }
     public boolean estConnecte(){
         SharedPreferences preferences = getSharedPreferences("login", Context.MODE_PRIVATE);
         String username = preferences.getString("nom", "");
@@ -107,6 +142,10 @@ public class AccueilActivity extends AppCompatActivity {
             });
 
         }
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
     }
 
 

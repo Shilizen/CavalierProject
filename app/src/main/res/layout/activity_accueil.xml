@@ -31,14 +31,14 @@
             android:layout_marginTop="52dp" />
 
         <ImageView
-            android:id="@+id/logo_cavalier"
+            android:id="@+id/imageView"
             android:layout_width="304dp"
             android:layout_height="299dp"
             android:layout_alignParentRight="true"
             android:layout_weight="1"
             android:paddingTop="50dp"
             android:paddingRight="110dp"
-            app:srcCompat="@drawable/logo_cavalier_recadrer" />
+             />
 
         <TextView
             style="@style/texte_view"
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:text="Vous n'êtes pas connecté"
             android:layout_alignParentRight="true"
-            android:layout_alignBottom="@id/logo_cavalier"/>
+            android:layout_alignBottom="@id/imageView"/>
 
     </RelativeLayout>
 

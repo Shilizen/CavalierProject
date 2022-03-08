@@ -27,8 +27,8 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
-            android:layout_height="255dp"
-            app:srcCompat="@drawable/logo_cavalier_recadrer" />
+            android:layout_gravity="center"
+            android:layout_height="255dp" />
     </FrameLayout>
 
     <TextView

@@ -50,4 +50,11 @@
         <item name="android:textSize">15sp</item>
         <item name="android:textStyle">italic</item>
     </style>
+    <style name="profileTxtView">
+        <item name="android:gravity">left</item>
+        <item name="fontFamily">sans-serif-smallcaps</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">22sp</item>
+
+    </style>
 </resources>
