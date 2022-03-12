@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.lajotsarthou.cavalier.EquideDBConnection;
+import fr.lajotsarthou.cavalier.EquideJdbcAsynch;
 
 public class Equide {
     private String nomComplet;
@@ -21,6 +22,8 @@ public class Equide {
     private String race;
     private String proprietaire;
     private String ecurie;
+    private EquideJdbcAsynch asynch = new EquideJdbcAsynch();
+    protected Connection uneCo;
 
     public Equide(){
 
@@ -112,7 +115,7 @@ public class Equide {
         this.ecurie = ecurie;
     }
 
-    public static List<Equide> getAllEquide(){
+    public List<Equide> getAllEquide(){
         List<Equide> equideList = new ArrayList<>();
         String req = "select * from equide";
         Connection connection = EquideDBConnection.getConnection();
@@ -125,15 +128,15 @@ public class Equide {
 
             while (rs.next()){
                 equideList.add(new Equide(
-                        rs.getInt(0),
-                        rs.getString(1),
+                        rs.getInt(1),
                         rs.getString(2),
-                        rs.getInt(3),
-                        rs.getString(4),
+                        rs.getString(3),
+                        rs.getInt(4),
                         rs.getString(5),
                         rs.getString(6),
                         rs.getString(7),
-                        rs.getString(8)
+                        rs.getString(8),
+                        rs.getString(9)
                 ));
             }
 
@@ -145,7 +148,7 @@ public class Equide {
         return equideList;
     }
 
-    public static Equide getByName(String nomEcurie){
+    public Equide getByName(String nomEcurie){
         List<Equide> equides = getAllEquide();
         Equide res = null;
         for(Equide equide : equides){
@@ -173,9 +176,16 @@ public class Equide {
 
     @Override
     public String toString() {
-        return "User{" +
-                "nomComplet='" + nomComplet + '\'' +
+        return "Cheval{" +
+                "id='" + id + '\'' +
+                ", nomC='" + nomComplet + '\'' +
                 ", nomEcurie='" + nomEcurie + '\'' +
+                ", age='" + age + '\'' +
+                ", sexe='" + sexe + '\'' +
+                ", race='" + race + '\'' +
+                ", robe='" + robe + '\'' +
+                ", proprio='" + proprietaire + '\'' +
+                ", ecurie='" + ecurie + '\'' +
                 '}';
     }
 

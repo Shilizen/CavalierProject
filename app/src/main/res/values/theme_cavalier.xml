@@ -43,6 +43,15 @@
         <item name="android:layout_gravity">center</item>
         <item name="android:gravity">center</item>
     </style>
+    <style name="eRegisterStyle">
+        <item name="android:backgroundTint" tools:ignore="NewApi">@color/cBackEt</item>
+        <item name="android:background">@color/cBackEt</item>
+        <item name="android:textColorHint">@color/cblack_transp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_height">39dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
     <style name="txtViewPetit">
         <item name="fontFamily">sans-serif-smallcaps</item>
         <item name="android:gravity">center</item>
@@ -55,6 +64,11 @@
         <item name="fontFamily">sans-serif-smallcaps</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">22sp</item>
-
+    </style>
+    <style name="profileTxtView2">
+        <item name="android:gravity">center</item>
+        <item name="fontFamily">sans-serif-smallcaps</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">22sp</item>
     </style>
 </resources>

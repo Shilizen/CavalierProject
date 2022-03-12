@@ -32,5 +32,17 @@
     <string name="entrez_votre_genre">Entrez votre genre</string>
     <string name="entrez_votre_niveau_galop_1_2">Entrez votre niveau (Galop 1, 2 ...)</string>
     <string name="editer_vos_informations_personnelles">Editer vos informations personnelles</string>
+    <string name="rechercher_un_cheval">Rechercher un cheval</string>
+    <string name="id">Id</string>
+    <string name="nom_complet">Nom Complet</string>
+    <string name="nom_d_curie">Nom d\'écurie</string>
+    <string name="race">Race</string>
+    <string name="robe">Robe</string>
+    <string name="propri_taire">Propriétaire</string>
+    <string name="ecurie_d_affiliation">Ecurie d\'affiliation</string>
+    <string name="vous_n_tes_pas_connect">Vous n\'êtes pas connecté</string>
+    <string name="bienvenu_nom">Bienvenu</string>
+    <string name="entrer_password">Choisissez un mot de pase</string>
+    <string name="mon_compte">Mon compte</string>
 
 </resources>

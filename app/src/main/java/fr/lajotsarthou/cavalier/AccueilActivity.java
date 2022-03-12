@@ -11,24 +11,34 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.DrawableContainer;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Surface;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import fr.lajotsarthou.cavalier.modele.UserModele;
 
-public class AccueilActivity extends AppCompatActivity {
+public class AccueilActivity extends AppCompatActivity implements SensorEventListener {
     private Button bLogin;
     private UserModele user;
     private WebView wActu;
     private TextView tWelcome;
     private Button bDeco;
     private ImageView logoImg;
+
+    private long lastUpdate;
+    private SensorManager senSensorManager;
+    private boolean color = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,11 +70,16 @@ public class AccueilActivity extends AppCompatActivity {
         estConnecte();
         if(estConnecte() == true){
             bDeco.setVisibility(View.VISIBLE);
+            bLogin.setVisibility(View.INVISIBLE);
             deconnexion();
         } else {
 
             Log.d("Deconnexion", "Le boulet est pas connecté ahahaha");
         }
+
+        //mis en place de l'accéléromètre (sensor)
+        lastUpdate = System.currentTimeMillis();
+        senSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
     }
 
@@ -133,7 +148,7 @@ public class AccueilActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     editor.clear();
                     editor.commit();
-                    tWelcome.setText("Vous n'êtes pas connectés");
+                    tWelcome.setText("Vous n'êtes pas connecté");
                     Log.d("Login", "préférence isConnected après bouton deconnexion " + username);
                     Log.d("Login", "C'est le ponpon !!! " + tWelcome.getText().toString());
                     Intent navDeco = new Intent(AccueilActivity.this, LoginActivity.class);
@@ -146,7 +161,61 @@ public class AccueilActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        senSensorManager.unregisterListener(this);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        senSensorManager.registerListener(this, senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        if(event.sensor.getType() == Sensor.TYPE_ACCELEROMETER){
+           getAccelerometer(event);
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
+
+    }
+
+    private void getAccelerometer(SensorEvent event){
+        float[] values = event.values;
+        float x = values[0];
+        float y = values[1];
+        float z = values[2];
+
+        float accelationSquareRoot = (x * x + y * y + z *z)/(SensorManager.GRAVITY_EARTH * SensorManager.GRAVITY_EARTH);
+        long heureActu = event.timestamp;
+        if(accelationSquareRoot >=2){
+            if(heureActu - lastUpdate < 200){
+                return;
+            }
+            lastUpdate = heureActu;
+            Toast.makeText(this, "Le téléphone a été secoué", Toast.LENGTH_LONG).show();
+            if(color){
+                bLogin.setBackgroundColor(this.getResources().getColor(R.color.cbrown_fonce));
+                bDeco.setBackgroundColor(this.getResources().getColor(R.color.cbrown_fonce));
+            } else{
+                bLogin.setBackgroundColor(this.getResources().getColor(R.color.shakeColorPink));
+                bDeco.setBackgroundColor(this.getResources().getColor(R.color.shakeColorPink));
+            }
+            color = !color;
+        }
+
+    }
 
 }

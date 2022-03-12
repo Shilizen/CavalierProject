@@ -16,7 +16,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="227dp">
+        android:layout_height="144dp">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarProfile"
@@ -38,13 +38,6 @@
         android:layout_height="wrap_content"
         android:text="@string/mon_compte" />
 
-    <Button
-        android:id="@+id/bAfficherInfo"
-        style="@style/boutton_cavalier"
-        android:layout_width="287dp"
-        android:layout_height="33dp"
-        android:text="Afficher mes infos" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -57,7 +50,7 @@
         </FrameLayout>
 
         <LinearLayout
-            android:layout_width="148dp"
+            android:layout_width="248dp"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
@@ -68,20 +61,12 @@
                 android:layout_height="wrap_content"
                 android:text="@string/nom" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="35dp" />
-
             <TextView
                 android:id="@+id/tPPrenom"
                 style="@style/profileTxtView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/pr_nom" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="35dp" />
 
             <TextView
                 android:id="@+id/tPAge"
@@ -90,20 +75,12 @@
                 android:layout_height="wrap_content"
                 android:text="@string/age" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="35dp" />
-
             <TextView
                 android:id="@+id/tPGenre"
                 style="@style/profileTxtView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/sexe" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="35dp" />
 
             <TextView
                 android:id="@+id/tPNiveau"
@@ -112,10 +89,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/niveau" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="35dp" />
-
             <TextView
                 android:id="@+id/tPNumlicence"
                 style="@style/profileTxtView"
@@ -123,9 +96,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/num_ro_de_licence" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="35dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -139,19 +109,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="35dp" />
-
             <TextView
                 android:id="@+id/tPrenom"
                 style="@style/profileTxtView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="35dp" />
 
             <TextView
                 android:id="@+id/tAge"
@@ -159,19 +121,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="35dp" />
-
             <TextView
                 android:id="@+id/tGenre"
                 style="@style/profileTxtView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="35dp" />
 
             <TextView
                 android:id="@+id/tNiveau"
@@ -179,19 +133,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="35dp" />
-
             <TextView
                 android:id="@+id/tNumLicence"
                 style="@style/profileTxtView2"
                 android:layout_width="match_parent"
-                android:layout_height="58dp" />
+                android:layout_height="wrap_content" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="35dp" />
         </LinearLayout>
     </LinearLayout>
 

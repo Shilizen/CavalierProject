@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,7 +22,14 @@ import fr.lajotsarthou.cavalier.modele.UserModele;
 public class RegisterActivity extends AppCompatActivity {
     private EditText username;
     private EditText password;
+    private EditText nomFam;
+    private EditText age;
+    private EditText genre;
+    private EditText numLicence;
+    private EditText niveau;
     private Button register;
+
+
     private CavalierDbOpenHelper myBase;
     private SQLiteDatabase db;
     private UserModele user;
@@ -42,11 +50,19 @@ public class RegisterActivity extends AppCompatActivity {
                 SharedPreferences preferences = getSharedPreferences("login", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 myBase.insertValue(username, password);
+                myBase.insertValuesCavalier(nomFam, username, age, genre, niveau, numLicence);
                 editor.putString("nom", username.getText().toString());
                 editor.apply();
                 myBase.close();
+                editor.commit();
+                Log.d("CAVALIER", "Preference partagée" + preferences.getString("nom", ""));
                 username.setText("");
                 password.setText("");
+                nomFam.setText("");
+                age.setText("");
+                genre.setText("");
+                niveau.setText("");
+                numLicence.setText("");
 
                 Intent navAcceuilCo = new Intent(RegisterActivity.this, AccueilActivity.class);
                 startActivity(navAcceuilCo);
@@ -55,10 +71,14 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void init(){
-        user = new ViewModelProvider(RegisterActivity.this).get(UserModele.class);
 
         username = findViewById(R.id.eUsername);
         password = findViewById(R.id.ePassword);
+        nomFam = findViewById(R.id.eReNom);
+        age = findViewById(R.id.eReAge);
+        genre = findViewById(R.id.eReGenre);
+        numLicence = findViewById(R.id.eReNumL);
+        niveau = findViewById(R.id.eReNiveau);
         register = findViewById(R.id.bRegister);
         myBase = new CavalierDbOpenHelper(this);
     }

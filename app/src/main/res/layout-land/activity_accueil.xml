@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/lesbackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <fragment
+        android:id="@+id/fragment"
+        android:name="fr.lajotsarthou.cavalier.MenuFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="106dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="72dp"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="151dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/logo_cavalier_recadrer" />
+
+        <TextView
+            android:id="@+id/tWelcome"
+            style="@style/texte_view"
+            android:layout_width="303dp"
+            android:layout_height="68dp"
+            android:layout_gravity="right"
+            android:text="@string/vous_n_tes_pas_connect" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" >
+
+        <WebView
+            android:id="@+id/wActuFfe"
+            android:layout_width="344dp"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="15dp" />
+
+            <Button
+                android:id="@+id/bLoginA"
+                style="@style/boutton_cavalier"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:text="@string/se_connecter" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <Button
+                android:id="@+id/bDisconnect"
+                style="@style/boutton_cavalier"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:text="@string/se_deconnecter" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -3,6 +3,7 @@ package fr.lajotsarthou.cavalier;
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -14,6 +15,8 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.lajotsarthou.cavalier.modele.CavalierModele;
+import fr.lajotsarthou.cavalier.modele.Equide;
 import fr.lajotsarthou.cavalier.modele.User;
 import fr.lajotsarthou.cavalier.modele.UserModele;
 
@@ -135,7 +138,7 @@ public class CavalierDbOpenHelper extends SQLiteOpenHelper {
 
     private static final String REQUETE_CREATION= REQUETE_CREATION_BD_TABLEEQ + REQUETE_CREATION_DB_TABLECAV + REQUETE_CREATION_BD_TABLEENG;
 
-    private SQLiteDatabase bCavalier;
+    private static SQLiteDatabase bCavalier;
 
 
 
@@ -192,6 +195,22 @@ public class CavalierDbOpenHelper extends SQLiteOpenHelper {
         valeur.put(CavalierDbOpenHelper.COLONNE_PROPRIETAIRE, propriétaire.getText().toString());
 
         getWritableDatabase().insert(CavalierDbOpenHelper.TABLE_EQUIDE, null, valeur);
+    }
+
+    public void insertValueEng(EditText numEngagement, EditText lieu, EditText discipline, EditText cat, EditText nom, EditText classement, String numL, int idCheval){
+        ContentValues values = new ContentValues();
+
+        values.put(CavalierDbOpenHelper.COLONNE_NUMENGAGEMENT, numEngagement.getText().toString());
+        values.put(CavalierDbOpenHelper.COLONNE_LIEUXCONCOURS, lieu.getText().toString());
+        values.put(CavalierDbOpenHelper.COLONNE_DISCIPLINE, discipline.getText().toString());
+        values.put(CavalierDbOpenHelper.COLONNE_CATEGORIE, cat.getText().toString());
+        values.put(CavalierDbOpenHelper.COLONNE_NOMCONCOURS, nom.getText().toString());
+        values.put(CavalierDbOpenHelper.COLONNE_CLASSEMENT, classement.getText().toString());
+        values.put(CavalierDbOpenHelper.COLONNE_NUMLICENCECONCOURS, numL);
+        values.put(CavalierDbOpenHelper.COLONNE_IDCHEVAL, idCheval);
+
+        getWritableDatabase().insert(CavalierDbOpenHelper.TABLE_ENGAGEMENT, null, values);
+
     }
     // procédure permettant l'enregistrement des données d'inscription dans la bdd
     public Boolean insertValue(EditText username, EditText password){
@@ -310,5 +329,65 @@ public class CavalierDbOpenHelper extends SQLiteOpenHelper {
         Log.d("List", "fermeture de la base de donnée");
 
         return userList;
+    }
+
+    public List<CavalierModele> getAllCavalier(){
+        ArrayList<CavalierModele> cavalierList = new ArrayList<>();
+
+        SQLiteDatabase db = CavalierDbOpenHelper.this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_CAVALIER + ";",null);
+        Log.d("List", "Requête prise en compte");
+
+        if (cursor.moveToFirst()) {
+            Log.d("List", "Début du curseur");
+            do {
+                CavalierModele cavalier = new CavalierModele();
+                cavalier.setId(cursor.getInt(0));
+                cavalier.setNomFamille(cursor.getString(1));
+                Log.d("List", " Nom de famille du cavalier " + cavalier.getNomFamille());
+                cavalier.setPrenom(cursor.getString(2));
+                cavalier.setAge(cursor.getInt(3));
+                cavalier.setSexe(cursor.getString(4));
+                cavalier.setNiveau(cursor.getString(5));
+                cavalier.setNumLicence(cursor.getString(6));
+                Log.d("List", "fermeture du curseur");
+
+                cavalierList.add(cavalier);
+
+                Log.d("List", "Liste ajoutée : " + cavalierList.toString());
+            } while (cursor.moveToNext());
+            Log.d("List", "fermeture du curseur");
+        }
+        db.close();
+        Log.d("List", "fermeture de la base de donnée");
+
+        return cavalierList;
+    }
+
+    public CavalierModele getCavalierByName(String prenom) {
+        List<CavalierModele> cavaliers = getAllCavalier();
+        CavalierModele res = null;
+        for (CavalierModele cavalier : cavaliers) {
+            if (cavalier.getPrenom().equals(prenom)) {
+                Log.d("Cavalier", "prenom trouvé" + cavalier.getPrenom());
+                res = new CavalierModele();
+                res.setId(cavalier.getId());
+                res.setNomFamille(cavalier.getNomFamille());
+                res.setPrenom(cavalier.getPrenom());
+                res.setAge(cavalier.getAge());
+                res.setSexe(cavalier.getSexe());
+                res.setNiveau(cavalier.getNiveau());
+                res.setNumLicence(cavalier.getNumLicence());
+                Log.d("Cavalier", "Cavalier changer" + cavalier.toString());
+                break;
+            }
+        }
+        if (res == null) {
+            Log.d("NULL", "Réponse nulle");
+            return null;
+        } else {
+            return res;
+        }
+
     }
 }

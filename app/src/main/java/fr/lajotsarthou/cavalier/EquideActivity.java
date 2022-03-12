@@ -31,6 +31,7 @@ public class EquideActivity extends AppCompatActivity {
     private TextView tEcurie;
 
     private List<Equide> equideListBis = new ArrayList<>();
+    private Equide equide;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +49,7 @@ public class EquideActivity extends AppCompatActivity {
                 String search = barreRecherche.getQuery().toString();
                 Log.d("RechercheEquide", search);
                if (!search.equals("")){
-                    equideListBis = Equide.getAllEquide();
-                   Log.d("RechercheEquide", "connexion successful" + equideListBis.toString());
+                    searchByName(search);
                }
             }
         });
@@ -68,9 +68,27 @@ public class EquideActivity extends AppCompatActivity {
         tRobe = (TextView) findViewById(R.id.tRobe);
         tProprio = (TextView) findViewById(R.id.tProprietaire);
         tEcurie = (TextView) findViewById(R.id.tEcurie);
+
+        equide = new Equide();
     }
 
     public void searchByName(String nomEcurie){
-        Equide.getByName(nomEcurie);
+        equideListBis = equide.getAllEquide();
+        for(Equide cheval : equideListBis){
+            if(cheval.getNomEcurie().equals(nomEcurie)){
+                Log.d("SEARCHBYNAME", "searchByName: " + cheval.getNomEcurie().toString());
+                tId.setText(String.valueOf(cheval.getId()));
+                tNomC.setText(cheval.getNomComplet());
+                tNomE.setText(cheval.getNomEcurie());
+                tAge.setText(String.valueOf(cheval.getAge()));
+                tSexe.setText(cheval.getSexe());
+                tRace.setText(cheval.getRace());
+                tRobe.setText(cheval.getRobe());
+                tProprio.setText(cheval.getProprietaire());
+                tEcurie.setText(cheval.getEcurie());
+            } else {
+                barreRecherche.setQuery("Cheval non trouvé", true);
+            }
+        }
     }
 }

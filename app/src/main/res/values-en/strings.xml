@@ -17,4 +17,16 @@
     <string name="entrez_votre_genre">Enter your gender</string>
     <string name="entrez_votre_niveau_galop_1_2">Enter your grade (G1, G2 ...)</string>
     <string name="editer_vos_informations_personnelles">Edit your personal information</string>
+    <string name="rechercher_un_cheval">Search a horse</string>
+    <string name="id">Id</string>
+    <string name="nom_complet">Full name</string>
+    <string name="nom_d_curie">Stable name</string>
+    <string name="race">Breed</string>
+    <string name="robe">Coat</string>
+    <string name="propri_taire">Owner</string>
+    <string name="ecurie_d_affiliation">Stable of affiliation</string>
+    <string name="vous_n_tes_pas_connect">You\'re not connected</string>
+    <string name="bienvenu_nom">Welcome</string>
+    <string name="entrer_password">Choose a password</string>
+    <string name="mon_compte">My account</string>
 </resources>

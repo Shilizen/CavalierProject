@@ -7,72 +7,48 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
-        style="@style/Theme.Cavalier"
+    <fragment
+        android:id="@+id/fragment"
+        android:name="fr.lajotsarthou.cavalier.MenuFragment"
         android:layout_width="match_parent"
-        android:layout_height="352dp">
+        android:layout_height="wrap_content" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
-            android:layout_width="49dp"
-            android:layout_height="59dp"
-            android:layout_alignParentLeft="true"
-            android:background="#00FAD5A6"
-            android:minHeight="100dp"
-            android:theme="@style/menu_cavalier"
-            tools:visibility="visible" />
-
-        <fragment
-            android:id="@+id/fragment2"
-            android:name="fr.lajotsarthou.cavalier.MenuFragment"
-            android:layout_width="0dp"
-            android:layout_height="214dp"
-            android:layout_alignTop="@id/toolbar"
-            android:layout_marginTop="52dp" />
+            android:layout_width="72dp"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize" />
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="304dp"
-            android:layout_height="299dp"
-            android:layout_alignParentRight="true"
-            android:layout_weight="1"
-            android:paddingTop="50dp"
-            android:paddingRight="110dp"
-             />
+            android:layout_width="199dp"
+            android:layout_height="173dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/logo_cavalier_recadrer" />
 
-        <TextView
-            style="@style/texte_view"
-            android:id="@+id/tWelcome"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Vous n'êtes pas connecté"
-            android:layout_alignParentRight="true"
-            android:layout_alignBottom="@id/imageView"/>
-
-    </RelativeLayout>
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/tWelcome"
+            style="@style/texte_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/imageView"
+            android:layout_alignParentRight="true"
+            android:text="Vous n'êtes pas connecté" />
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="22dp" />
-        <Button
-            android:id="@+id/bDisconnect"
-            style="@style/boutton_cavalier"
-            android:layout_width="360dp"
-            android:layout_height="wrap_content"
-            android:text="@string/se_deconnecter"
-            android:visibility="invisible"/>
-
-        <Button
-            android:id="@+id/bLoginA"
-            style="@style/boutton_cavalier"
-            android:layout_width="360dp"
-            android:layout_height="wrap_content"
-            android:text="@string/se_connecter" />
 
         <Space
             android:layout_width="match_parent"
@@ -83,6 +59,21 @@
             style="@style/boutton_cavalier"
             android:layout_width="390dp"
             android:layout_height="264dp" />
+
+        <Button
+            android:id="@+id/bLoginA"
+            style="@style/boutton_cavalier"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:text="@string/se_connecter" />
+
+        <Button
+            android:id="@+id/bDisconnect"
+            style="@style/boutton_cavalier"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:text="@string/se_deconnecter"
+            android:visibility="invisible" />
 
 
     </LinearLayout>

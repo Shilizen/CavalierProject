@@ -17,4 +17,16 @@
     <string name="entrez_votre_genre">Introduzca su sexo</string>
     <string name="entrez_votre_niveau_galop_1_2">Introduzca su nivel (G1, 2 ...)</string>
     <string name="editer_vos_informations_personnelles">Editar su información personal</string>
+    <string name="rechercher_un_cheval">Buscar un equino</string>
+    <string name="id">Id</string>
+    <string name="nom_complet">Nombre completo,</string>
+    <string name="nom_d_curie">Nombre del establo</string>
+    <string name="race">Raza</string>
+    <string name="robe">Pelaje del caballo</string>
+    <string name="propri_taire">Propietario</string>
+    <string name="ecurie_d_affiliation">Establo de afiliación</string>
+    <string name="vous_n_tes_pas_connect">No está conectado</string>
+    <string name="bienvenu_nom">Bienvenido</string>
+    <string name="entrer_password">Elegir una contraseña</string>
+    <string name="mon_compte">Mi cuenta</string>
 </resources>
